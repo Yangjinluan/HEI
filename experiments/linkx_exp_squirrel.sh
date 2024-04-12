@@ -15,7 +15,7 @@ weight_decay_lst=(1e-3 5e-4)
 num_layers_lst=(1)
 link_init_layers_A_lst=(2)
 link_init_layers_X_lst=(1)
-hidden_channels_lst=(128)
+hidden_channels_lst=(256)
 
 for infer_env_lr in "${infer_env_lr_lst[@]}"; do
     for z_class_num in "${z_class_num_lst[@]}"; do
@@ -31,9 +31,9 @@ for infer_env_lr in "${infer_env_lr_lst[@]}"; do
                                             for hidden_channels in "${hidden_channels_lst[@]}"; do
                                                 if [ "$dataset" = "snap-patents" ] || [ "$dataset" = "arxiv-year" ]; then
                                                     echo "Running $dataset "
-                                                    python main_zin.py --dataset $dataset --sub_dataset ${sub_dataset:-''} --method linkx  --device "cuda:1" --runs 5  --num_layers $num_layers  --link_init_layers_A $link_init_layers_A  --link_init_layers_X $link_init_layers_X --hidden_channels $hidden_channels  --lr $lr --weight_decay $weight_decay --display_step 10  --infer_env_lr $infer_env_lr --z_class_num $z_class_num  --hidden_dim_infer $hidden_dim_infer  --penalty_anneal_iters $penalty_anneal_iters  --penalty_weight $penalty_weight   --l2_regularizer_weight $l2_regularizer_weight  --directed
+                                                    python main_HEI.py --dataset $dataset --sub_dataset ${sub_dataset:-''} --method linkx  --device "cuda:3" --runs 5  --num_layers $num_layers  --link_init_layers_A $link_init_layers_A  --link_init_layers_X $link_init_layers_X --hidden_channels $hidden_channels  --lr $lr --weight_decay $weight_decay --display_step 10  --infer_env_lr $infer_env_lr --z_class_num $z_class_num  --hidden_dim_infer $hidden_dim_infer  --penalty_anneal_iters $penalty_anneal_iters  --penalty_weight $penalty_weight   --l2_regularizer_weight $l2_regularizer_weight  --directed
                                                 else
-                                                    python main_zin.py --dataset $dataset --sub_dataset ${sub_dataset:-''} --method linkx  --device "cuda:1" --runs 5 --num_layers $num_layers   --link_init_layers_A $link_init_layers_A  --link_init_layers_X $link_init_layers_X  --hidden_channels $hidden_channels --lr $lr --weight_decay $weight_decay --display_step 10  --infer_env_lr $infer_env_lr --z_class_num $z_class_num  --hidden_dim_infer $hidden_dim_infer  --penalty_anneal_iters $penalty_anneal_iters  --penalty_weight $penalty_weight   --l2_regularizer_weight $l2_regularizer_weight 
+                                                    python main_HEI.py --dataset $dataset --sub_dataset ${sub_dataset:-''} --method linkx  --device "cuda:3" --runs 5 --num_layers $num_layers   --link_init_layers_A $link_init_layers_A  --link_init_layers_X $link_init_layers_X  --hidden_channels $hidden_channels --lr $lr --weight_decay $weight_decay --display_step 10  --infer_env_lr $infer_env_lr --z_class_num $z_class_num  --hidden_dim_infer $hidden_dim_infer  --penalty_anneal_iters $penalty_anneal_iters  --penalty_weight $penalty_weight   --l2_regularizer_weight $l2_regularizer_weight 
                                                 fi
                                             done
                                         done
