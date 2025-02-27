@@ -1,4 +1,4 @@
-# Leveraging Invariant Principle for Heterophilic Graph Structure Distribution Shifts （ICLR2025)
+# Leveraging Invariant Principle for Heterophilic Graph Structure Distribution Shifts （WWW2025)
 
 ![framework](images/framework.png)
 
